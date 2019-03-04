@@ -1,7 +1,7 @@
 package test;
 
-import com.psy.model.User;
-import com.psy.mybatis.mapper.UserMapper;
+import com.psy.mybatis.mapper.CounselorMapper;
+import com.psy.model.Counselor;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 public class TestMybatis {
     public static void main(String[] args) {
@@ -31,15 +30,16 @@ public class TestMybatis {
 
         SqlSession session = sqlSessionFactory.openSession();
 
-        UserMapper mapper = session.getMapper(UserMapper.class);
+        CounselorMapper mapper = session.getMapper(CounselorMapper.class);
         try {
-            List<User> userList = mapper.selectAllUser();
-            session.commit();
-            for (User user : userList) {
-                System.out.println( user.getUsername() + " "
-                        + user.getPassword() + " " + user.getSex() + " "
-                        + user.getAddress());
-            }
+            Counselor user = mapper.selectByPrimaryKey(1);
+            System.out.println(user);
+//            session.commit();
+//            for (Counselor user : userList) {
+//                System.out.println( user.getUsername() + " "
+//                        + user.getPassword() + " " + user.getSex() + " "
+//                        + user.getAddress());
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             session.rollback();

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.psy.mybatis.mapper.CounselorMapper" >
+  <resultMap id="BaseResultMap" type="com.psy.model.Counselor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_show" property="cityShow" jdbcType="VARCHAR" />
+    <result column="guide_hours" property="guideHours" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="is_follow" property="isFollow" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="low_price" property="lowPrice" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price_show" property="priceShow" jdbcType="VARCHAR" />
+    <result column="province_show" property="provinceShow" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="star" property="star" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="years" property="years" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, city_show, guide_hours, icon, intro, is_follow, level, low_price, method, name, 
+    price_show, province_show, sex, star, title, years
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_counselor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_counselor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.psy.model.Counselor" >
+    insert into t_counselor (id, city_show, guide_hours, 
+      icon, intro, is_follow, 
+      level, low_price, method, 
+      name, price_show, province_show, 
+      sex, star, title, years
+      )
+    values (#{id,jdbcType=INTEGER}, #{cityShow,jdbcType=VARCHAR}, #{guideHours,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, #{isFollow,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{lowPrice,jdbcType=VARCHAR}, #{method,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{priceShow,jdbcType=VARCHAR}, #{provinceShow,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{star,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{years,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.psy.model.Counselor" >
+    insert into t_counselor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityShow != null" >
+        city_show,
+      </if>
+      <if test="guideHours != null" >
+        guide_hours,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="isFollow != null" >
+        is_follow,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="priceShow != null" >
+        price_show,
+      </if>
+      <if test="provinceShow != null" >
+        province_show,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="years != null" >
+        years,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityShow != null" >
+        #{cityShow,jdbcType=VARCHAR},
+      </if>
+      <if test="guideHours != null" >
+        #{guideHours,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="isFollow != null" >
+        #{isFollow,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="priceShow != null" >
+        #{priceShow,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceShow != null" >
+        #{provinceShow,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        #{years,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.psy.model.Counselor" >
+    update t_counselor
+    <set >
+      <if test="cityShow != null" >
+        city_show = #{cityShow,jdbcType=VARCHAR},
+      </if>
+      <if test="guideHours != null" >
+        guide_hours = #{guideHours,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="isFollow != null" >
+        is_follow = #{isFollow,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="priceShow != null" >
+        price_show = #{priceShow,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceShow != null" >
+        province_show = #{provinceShow,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        years = #{years,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.psy.model.Counselor" >
+    update t_counselor
+    set city_show = #{cityShow,jdbcType=VARCHAR},
+      guide_hours = #{guideHours,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      is_follow = #{isFollow,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      low_price = #{lowPrice,jdbcType=VARCHAR},
+      method = #{method,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      price_show = #{priceShow,jdbcType=VARCHAR},
+      province_show = #{provinceShow,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      star = #{star,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      years = #{years,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
