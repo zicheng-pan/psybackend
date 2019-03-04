@@ -1,12 +1,19 @@
 package com.psy.service;
 
 import com.psy.model.Counselor;
+import com.psy.mybatis.mapper.CounselorMapper;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 // for: https://therapis-uapi.knowyourself.cc/consultant?offset=20&page_size=20&city_id=&price_type=0&price_cut=0&method=
@@ -30,15 +37,45 @@ public class CounselorService {
         String price_type = request.getParameter("price_type");
         String price_cut = request.getParameter("price_cut");
 
-        List<Counselor> list = new ArrayList<Counselor>();
-        Counselor c1 = new Counselor();
-        c1.setName("name1");
-        c1.setTitle("title1");
-        Counselor c2 = new Counselor();
-        c2.setName("name1");
-        c2.setTitle(offset+" "+page_size+" "+city_id+" "+price_type+" "+price_cut);
-        list.add(c1);
-        list.add(c2);
-        return list;
+        Logger logger=Logger.getLogger(this.getClass());
+        {
+            SqlSessionFactory sqlSessionFactory = null;
+
+            String resource = "mybatis.cfg.xml";
+
+
+            InputStream inputStream = null;
+            try {
+                inputStream = Resources.getResourceAsStream(resource);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            List<Counselor> userList = null;
+            SqlSession session = sqlSessionFactory.openSession();
+
+            CounselorMapper mapper = session.getMapper(CounselorMapper.class);
+            try {
+                userList = mapper.selectAllCounselor();
+                session.commit();
+                for (Counselor user : userList) {
+                    logger.debug("-------------------------------------");
+                    logger.debug(user.getTitle());
+                    logger.debug("-------------------------------------");
+                    System.out.println( user);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                session.rollback();
+            }
+
+
+            session.close();
+            return userList;
+        }
+
     }
 }

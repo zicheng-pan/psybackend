@@ -19,6 +19,11 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="years" property="years" jdbcType="INTEGER" />
   </resultMap>
+
+    <select id="selectAllCounselor" resultMap="BaseResultMap">
+        select * from t_counselor
+    </select>
+
   <sql id="Base_Column_List" >
     id, city_show, guide_hours, icon, intro, is_follow, level, low_price, method, name, 
     price_show, province_show, sex, star, title, years
