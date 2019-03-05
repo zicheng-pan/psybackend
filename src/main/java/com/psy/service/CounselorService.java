@@ -2,6 +2,8 @@ package com.psy.service;
 
 import com.psy.model.Counselor;
 import com.psy.mybatis.mapper.CounselorMapper;
+import com.psy.tool.Result;
+import com.psy.tool.ServerStatus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,9 +30,9 @@ public class CounselorService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.TEXT_PLAIN)
-    public List<Counselor> getAllCounselor(@DefaultValue("") @QueryParam("authCode") String authCode,
-                                 @Context HttpServletRequest request) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ServerStatus getAllCounselor(@DefaultValue("") @QueryParam("authCode") String authCode,
+                                        @Context HttpServletRequest request) {
         String offset = request.getParameter("offset");
         String page_size = request.getParameter("page_size");
         String city_id = request.getParameter("city_id");
@@ -73,8 +75,16 @@ public class CounselorService {
             }
 
 
+
             session.close();
-            return userList;
+            ServerStatus<Counselor> serverStatus = new ServerStatus();
+            serverStatus.setStatus( "success");
+            Result<Counselor> result = new Result<Counselor>();
+            result.setCount(userList.size());
+            result.setList(userList);
+            serverStatus.setResult(result);
+
+            return serverStatus;
         }
 
     }
