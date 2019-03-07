@@ -17,5 +17,5 @@ public interface CounselorMapper {
 
     int updateByPrimaryKey(Counselor record);
 
-    public List<Counselor> selectAllCounselor() throws Exception;
+    public List<Counselor> selectAll() throws Exception;
 }

@@ -1,6 +1,4 @@
-package com.mkyong.rest;
-
-import com.mkyong.Track;
+package com.restful.demo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

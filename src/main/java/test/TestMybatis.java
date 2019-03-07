@@ -35,7 +35,7 @@ public class TestMybatis {
 
         CounselorMapper mapper = session.getMapper(CounselorMapper.class);
         try {
-            List<Counselor> userList = mapper.selectAllCounselor();
+            List<Counselor> userList = mapper.selectAll();
             session.commit();
             for (Counselor user : userList) {
                 System.out.println( user);

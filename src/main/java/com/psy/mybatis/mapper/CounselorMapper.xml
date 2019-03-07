@@ -20,7 +20,7 @@
     <result column="years" property="years" jdbcType="INTEGER" />
   </resultMap>
 
-    <select id="selectAllCounselor" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
         select * from t_counselor
     </select>
 
