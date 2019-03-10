@@ -19,7 +19,7 @@ public class UserAction {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public List<User> getAllUsers(@Context HttpServletRequest request) {
 
         List<User> userList = userService.listAll();

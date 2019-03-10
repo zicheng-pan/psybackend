@@ -17,8 +17,8 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
                 <!--<property name="url" value="jdbc:mysql://118.25.111.57:3306/psydatabase?serverTimezone=UTC" />-->
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC" />
-                <property name="username" value="root" />
+                <property name="url" value="jdbc:mysql://118.25.111.57:3306/psydatabase?serverTimezone=UTC" />
+                <property name="username" value="weixingxingzhe" />
                 <property name="password" value="weixingxingzhe" />
             </dataSource>
         </environment>

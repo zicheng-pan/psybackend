@@ -9,6 +9,11 @@
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+        select * from homepageslider
+    </select>
+
   <sql id="Base_Column_List" >
     id, link, app_id, link_type, pic, title
   </sql>

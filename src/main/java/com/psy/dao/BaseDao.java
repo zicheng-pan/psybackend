@@ -116,7 +116,6 @@ public class BaseDao<T> implements BaseDaoInterface<Object> {
     @Override
     public int insert(Object record) {
         return executeDeletorUpdate("insert", record);
-
     }
 
     @Override
