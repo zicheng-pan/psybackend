@@ -9,6 +9,9 @@
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select * from homepagemenu
+  </select>
   <sql id="Base_Column_List" >
     id, app_id, link, link_type, pic, title
   </sql>

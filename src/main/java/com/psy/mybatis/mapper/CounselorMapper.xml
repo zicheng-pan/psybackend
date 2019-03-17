@@ -3,16 +3,16 @@
 <mapper namespace="com.psy.mybatis.mapper.CounselorMapper" >
   <resultMap id="BaseResultMap" type="com.psy.model.Counselor" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="city_show" property="cityShow" jdbcType="VARCHAR" />
+    <result column="city_show" property="city_show" jdbcType="VARCHAR" />
     <result column="guide_hours" property="guideHours" jdbcType="VARCHAR" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="intro" property="intro" jdbcType="VARCHAR" />
-    <result column="is_follow" property="isFollow" jdbcType="INTEGER" />
+    <result column="is_follow" property="is_follow" jdbcType="INTEGER" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="low_price" property="lowPrice" jdbcType="VARCHAR" />
     <result column="method" property="method" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="price_show" property="priceShow" jdbcType="VARCHAR" />
+    <result column="price_show" property="price_show" jdbcType="VARCHAR" />
     <result column="province_show" property="provinceShow" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
     <result column="star" property="star" jdbcType="VARCHAR" />
@@ -23,6 +23,7 @@
     <select id="selectAll" resultMap="BaseResultMap">
         select * from t_counselor
     </select>
+    
 
   <sql id="Base_Column_List" >
     id, city_show, guide_hours, icon, intro, is_follow, level, low_price, method, name, 

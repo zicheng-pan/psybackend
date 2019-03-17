@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.psy.mybatis.mapper.HomePageBannerMapper" >
+  <resultMap id="BaseResultMap" type="com.psy.model.HomePageBanner" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="link_type" property="linkType" jdbcType="INTEGER" />
+    <result column="appid" property="appid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="link_type_show" property="linkTypeShow" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_show" property="statusShow" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIME" />
+    <result column="create_time_show" property="createTimeShow" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pic, link, link_type, appid, title, link_type_show, status, status_show, create_time, 
+    create_time_show
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select * from home_page_banner
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from home_page_banner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from home_page_banner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.psy.model.HomePageBanner" >
+    insert into home_page_banner (id, pic, link, 
+      link_type, appid, title, 
+      link_type_show, status, status_show, 
+      create_time, create_time_show)
+    values (#{id,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{linkType,jdbcType=INTEGER}, #{appid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{linkTypeShow,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{statusShow,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIME}, #{createTimeShow,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.psy.model.HomePageBanner" >
+    insert into home_page_banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="linkType != null" >
+        link_type,
+      </if>
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="linkTypeShow != null" >
+        link_type_show,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusShow != null" >
+        status_show,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createTimeShow != null" >
+        create_time_show,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        #{linkType,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTypeShow != null" >
+        #{linkTypeShow,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusShow != null" >
+        #{statusShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIME},
+      </if>
+      <if test="createTimeShow != null" >
+        #{createTimeShow,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.psy.model.HomePageBanner" >
+    update home_page_banner
+    <set >
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        link_type = #{linkType,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null" >
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTypeShow != null" >
+        link_type_show = #{linkTypeShow,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusShow != null" >
+        status_show = #{statusShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIME},
+      </if>
+      <if test="createTimeShow != null" >
+        create_time_show = #{createTimeShow,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.psy.model.HomePageBanner" >
+    update home_page_banner
+    set pic = #{pic,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      link_type = #{linkType,jdbcType=INTEGER},
+      appid = #{appid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      link_type_show = #{linkTypeShow,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      status_show = #{statusShow,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIME},
+      create_time_show = #{createTimeShow,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

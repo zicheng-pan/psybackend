@@ -36,6 +36,7 @@
 			<artifactId>jersey-json</artifactId>
 			<version>1.8</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-client -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -98,7 +99,9 @@
 				<version>2.1</version>
 				<configuration>
 					<!-- 注意tomcat7此处的url -->
-					<url>http://118.25.111.57:8080/manager/text</url>
+					<url>http://localhost:8080/manager/text</url>
+					<username>admin</username>
+         			<password>admin</password>
 					<server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致-->
 					<path>/psybackend</path> <!-- 此处的名字是项目发布的工程名-->
 				</configuration>

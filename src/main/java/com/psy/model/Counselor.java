@@ -1,9 +1,11 @@
 package com.psy.model;
 
+import java.util.List;
+
 public class Counselor {
     private Integer id;
 
-    private String cityShow;
+    private String city_show;
 
     private String guideHours;
 
@@ -11,7 +13,7 @@ public class Counselor {
 
     private String intro;
 
-    private Integer isFollow;
+    private Integer is_follow;
 
     private Integer level;
 
@@ -21,7 +23,7 @@ public class Counselor {
 
     private String name;
 
-    private String priceShow;
+    private String price_show;
 
     private String provinceShow;
 
@@ -32,8 +34,18 @@ public class Counselor {
     private String title;
 
     private Integer years;
+    
+    private List<ConsultantKeyword> tags;
+    
+    public List<ConsultantKeyword> getTags() {
+		return tags;
+	}
 
-    public Integer getId() {
+	public void setTags(List<ConsultantKeyword> tags) {
+		this.tags = tags;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -41,15 +53,15 @@ public class Counselor {
         this.id = id;
     }
 
-    public String getCityShow() {
-        return cityShow;
-    }
+    public String getCity_show() {
+		return city_show;
+	}
 
-    public void setCityShow(String cityShow) {
-        this.cityShow = cityShow == null ? null : cityShow.trim();
-    }
+	public void setCity_show(String city_show) {
+		this.city_show = city_show;
+	}
 
-    public String getGuideHours() {
+	public String getGuideHours() {
         return guideHours;
     }
 
@@ -73,15 +85,15 @@ public class Counselor {
         this.intro = intro == null ? null : intro.trim();
     }
 
-    public Integer getIsFollow() {
-        return isFollow;
-    }
+    public Integer getIs_follow() {
+		return is_follow;
+	}
 
-    public void setIsFollow(Integer isFollow) {
-        this.isFollow = isFollow;
-    }
+	public void setIs_follow(Integer is_follow) {
+		this.is_follow = is_follow;
+	}
 
-    public Integer getLevel() {
+	public Integer getLevel() {
         return level;
     }
 
@@ -113,15 +125,15 @@ public class Counselor {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getPriceShow() {
-        return priceShow;
-    }
+    public String getPrice_show() {
+		return price_show;
+	}
 
-    public void setPriceShow(String priceShow) {
-        this.priceShow = priceShow == null ? null : priceShow.trim();
-    }
+	public void setPrice_show(String price_show) {
+		this.price_show = price_show;
+	}
 
-    public String getProvinceShow() {
+	public String getProvinceShow() {
         return provinceShow;
     }
 
