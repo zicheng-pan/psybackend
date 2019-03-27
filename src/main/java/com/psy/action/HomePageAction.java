@@ -1,5 +1,6 @@
 package com.psy.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,14 @@ import com.psy.model.HomePage;
 import com.psy.model.HomePageArticle;
 import com.psy.model.HomePageBanner;
 import com.psy.model.HomePageCourse;
+import com.psy.model.HomePageQuestion;
+import com.psy.model.HomePageQuestionOption;
 import com.psy.model.HomePageTest;
 import com.psy.service.HomePageArticleService;
 import com.psy.service.HomePageBannerService;
 import com.psy.service.HomePageCourseService;
+import com.psy.service.HomePageQuestionOpService;
+import com.psy.service.HomePageQuestionService;
 import com.psy.service.HomePageTestService;
 import com.psy.tool.Result;
 
@@ -32,6 +37,8 @@ public class HomePageAction<E> {
 	HomePageBannerService bannerService = new HomePageBannerService();
 	HomePageCourseService courseService = new HomePageCourseService();
 	HomePageTestService testService = new HomePageTestService();
+	HomePageQuestionService homePageQuestionService = new HomePageQuestionService();
+	HomePageQuestionOpService HomePageQuestionOpService = new HomePageQuestionOpService();
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -69,5 +76,46 @@ public class HomePageAction<E> {
 		resMap.put("test_list", result4);
 		serverStatus.setResult(resMap);
 		return serverStatus;
+	}
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+	@Path("/getQuestion")
+	public Map<String, Object> queryHomePageQuestion(@Context HttpServletRequest request){
+		// 定义一个返回的map集合
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		// 根据测试编号来获取测试标题
+		String testId = request.getParameter("testId");
+		Integer id = 0;
+		if (!"".equals(testId)) {
+			id = Integer.parseInt(testId);
+		}
+		// 获取数据
+		List<HomePageQuestion> pageQuestions = homePageQuestionService.selectQuestion(id);
+		Map<String, Object> resultList = new HashMap<String, Object>();
+		List<Object> list = new ArrayList<Object>();
+		// 获取测试问题编号
+		resultList.put("status", "success");
+		for (HomePageQuestion question: pageQuestions) {
+			Integer questionId = question.getQuestionId();
+			// 通过测试问题编号获取数据
+			List<HomePageQuestionOption> options = HomePageQuestionOpService.selectAllByQuestionId(questionId);
+			if (question != null){
+				resultMap.put("question", question.getQuestionTitle());
+			}
+			// 新建一个字符串的map集合
+			Map<String, String> map = new HashMap<String, String>();
+			if (null != options && options.size() != 0) {
+				for (HomePageQuestionOption eo: options) {
+					// 循环获取问题属性
+					map.put(eo.getQuestionOption(), eo.getQuestionName());
+				}
+				resultMap.put("option", map);
+			}
+			list.add(resultMap);
+		}
+		resultList.put("result", list);
+		return resultList;
 	}
 }

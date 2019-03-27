@@ -6,7 +6,7 @@ public class Appointment {
 	private int day;
 	private int month;
 	private String status;
-	private List<TimePart> timeList;
+//	private List<TimePart> timeList;
 	private int is_display;
 	public String getDate() {
 		return date;
@@ -32,12 +32,12 @@ public class Appointment {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public List<TimePart> getTimeList() {
-		return timeList;
-	}
-	public void setTimeList(List<TimePart> timeList) {
-		this.timeList = timeList;
-	}
+//	public List<TimePart> getTimeList() {
+//		return timeList;
+//	}
+//	public void setTimeList(List<TimePart> timeList) {
+//		this.timeList = timeList;
+//	}
 	public int getId() {
 		return id;
 	}
